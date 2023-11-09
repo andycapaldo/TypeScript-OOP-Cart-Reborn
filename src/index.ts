@@ -46,6 +46,36 @@ class User{
         private _age: number,
         private _cart: Item[]
     ){}
+
+    public addToCart(item:Item){
+        this.cart.push(item)
+    }
+
+    public removeFromCart(itemToRemove:Item):void{
+        this.cart = this.cart.filter(item => item.id !== itemToRemove.id)
+    }
+
+    public removeQuantityFromCart(itemToRemove:Item, quantity:number):void{
+        for (let i=0; i<quantity; i++){
+            let index = this.cart.findIndex(item => item.id === itemToRemove.id);
+            this.cart.splice(index, 1);
+        }
+    }
+
+    public cartTotal():number{
+        let total = 0
+        for (let x of this.cart){
+            total += x.price
+        }
+        return total
+    }
+
+    public printCart():void{
+        for (let x of this.cart){
+            console.log(x.name)
+        }
+    }
+
     public get id(): string {
         return this._id;
     }
