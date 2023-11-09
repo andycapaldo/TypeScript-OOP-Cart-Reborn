@@ -1,0 +1,20 @@
+{
+  "name": "homework",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsc && node ./dist/index.js"
+  },
+  "author": "Andrew Capaldo",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/uuid": "^9.0.7",
+    "ts-loader": "^9.5.0",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "uuid": "^9.0.1"
+  }
+}
