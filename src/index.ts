@@ -4,17 +4,14 @@ import { v4 as uuidv4 } from "uuid";
 class Item{
 
     constructor(
-        private _id: string = uuidv4(),
         private _name: string,
         private _price: number,
-        private _description: string
+        private _description: string,
+        private readonly  _id: string = uuidv4()
     ){}
 
     public get id(): string {
         return this._id;
-    }
-    public set id(value: string) {
-        this._id = value;
     }
     public get name(): string {
         return this._name;
@@ -41,10 +38,10 @@ class Item{
 class User{
 
     constructor(
-        private _id: string = uuidv4(),
         private _name: string,
         private _age: number,
-        private _cart: Item[]
+        private _cart: Item[],
+        private readonly _id: string = uuidv4()
     ){}
 
     public addToCart(item:Item){
@@ -79,9 +76,6 @@ class User{
     public get id(): string {
         return this._id;
     }
-    public set id(value: string) {
-        this._id = value;
-    }
     public get name(): string {
         return this._name;
     }
@@ -104,10 +98,14 @@ class User{
 
 
 class Shop{
+    
+    constructor(private _items: Item[]){
+        const item1 = new Item("Source Magazine", 8.99, "A copy of the latest issue of Source Magazine.");
+        const item2 = new Item("Pack of Gum", 2.99, "35 pack of Wrigley's Polar Ice EXTRA chewing gum." );
+        const item3 = new Item("ChapStick", 3.99, "A small container of lip moisturizer.");
 
-    constructor(
-        private _items: Item[]
-        ){}
+        this.items.push(item1, item2, item3)
+    }
 
         public get items(): Item[] {
             return this._items;
