@@ -40,7 +40,7 @@ class User{
     constructor(
         private _name: string,
         private _age: number,
-        private _cart: Item[],
+        private _cart: Item[] = [],
         private readonly _id: string = uuidv4()
     ){}
 
@@ -97,20 +97,44 @@ class User{
 }
 
 
-class Shop{
-    
-    constructor(private _items: Item[]){
-        const item1 = new Item("Source Magazine", 8.99, "A copy of the latest issue of Source Magazine.");
-        const item2 = new Item("Pack of Gum", 2.99, "35 pack of Wrigley's Polar Ice EXTRA chewing gum." );
-        const item3 = new Item("ChapStick", 3.99, "A small container of lip moisturizer.");
+class Shop {
+    private _items: Item[];
 
-        this.items.push(item1, item2, item3)
+    constructor() {
+        const item1 = new Item("Source Magazine", 8.99, "A copy of the latest issue of Source Magazine.");
+        const item2 = new Item("Pack of Gum", 2.99, "35 pack of Wrigley's Polar Ice EXTRA chewing gum.");
+        const item3 = new Item("ChapStick", 3.99, "A small container of lip moisturizer.");
+        this._items = [item1, item2, item3];
     }
 
-        public get items(): Item[] {
-            return this._items;
-        }
-        public set items(value: Item[]) {
-            this._items = value;
-        }
+    get items() {
+        return this._items;
+    }
+
+    set items(value) {
+        this._items = value;
+    }
 }
+
+let shop = new Shop();
+let andy = new User('Andy', 27)
+
+andy.addToCart(shop.items[0]);
+andy.addToCart(shop.items[0]);
+andy.addToCart(shop.items[0]);
+
+andy.addToCart(shop.items[1]);
+andy.addToCart(shop.items[1]);
+andy.addToCart(shop.items[1]);
+
+andy.addToCart(shop.items[2]);
+andy.addToCart(shop.items[2]);
+andy.addToCart(shop.items[2]);
+andy.printCart();
+
+andy.removeFromCart(shop.items[0]);
+andy.printCart();
+
+andy.removeQuantityFromCart(shop.items[1], 2);
+andy.printCart();
+console.log(andy.cartTotal());
